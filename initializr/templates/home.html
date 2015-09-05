@@ -1,0 +1,27 @@
+        <div class="top-space row">
+            Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (the contextual colors are only used to reinforce meaning that is already present in the text/markup), or is included through alternative means, such as additional text hidden with the .sr-only class.
+        </div>
+
+        <div class="top-space row" ng-controller="LoginController">
+                <form class="col-md-8 col-md-offset-2" novalidate >
+                    <div class="form-group ">
+                        <label for="SignIn" class="font-increase">Sign In</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ng-model="user.email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="user.password">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" ng-click="loginInit(user)" >Submit</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerNow">Register Now</label> /
+                        <label for="registerNow">Forgot Password</label>
+                    </div>
+                </form>
+        </div>
+<!--// browser-sync start --server --files "css/*.css, js/*.js, index.html" -->

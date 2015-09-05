@@ -1,0 +1,59 @@
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+.header {
+    margin: 1.2em 0em 1.2em 0em;
+}
+
+.font-increase {
+    font-size: 130%;
+}
+
+.right-tabs {
+    float: left;
+    border-bottom: 0px;
+}
+
+.right-tabs li {
+    float: right
+}
+
+/*.header{
+	margin-top: 10px;
+}*/
+
+.top-space {
+    margin-top: 20px;
+}
+
+.navigation-button {
+    background-color: blue;
+}
+
+.navigation-button span {
+    background-color: red;
+}
+
+
+/* Small devices (tablets, 768px and up) */
+
+/*@media (min-width: @screen-sm-min) {
+    .font-increase {
+        font-size: 150%;
+    }
+}
+
+
+/* Medium devices (desktops, 992px and up) */
+
+/*@media (min-width: @screen-md-min) {}
+
+
+/* Large devices (large desktops, 1200px and up) */
+
+/*@media (min-width: @screen-lg-min) {}*/
