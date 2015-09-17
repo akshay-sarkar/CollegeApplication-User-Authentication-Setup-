@@ -1,41 +1,40 @@
 <form novalidate ng-controller="RegisterController" name="RegisterForm">
     <div class="form-group">
-        <label for="userName">Name</label>
-        <input type="text" class="form-control" name="userName" placeholder="Full Name" ng-model="registerUser
-.userName" required>
-<div ng-show="RegisterForm.$submitted || RegisterForm.userName.$touched">
-        <div ng-show="RegisterForm.userName.$error.required">Enter Full Name !!</div>
-</div>
+        <label for="userName">Username</label>
+        <input type="text" class="form-control" name="userName" placeholder="Full Name" ng-model="registerUser.userName" required>
+        <div ng-show="RegisterForm.$submitted || RegisterForm.userName.$touched">
+            <div ng-show="RegisterForm.userName.$error.required">Enter Username !!</div>
+        </div>
     </div>
     <div class="form-group">
-        <label for="userEmail">Email address</label>
+        <label for="userEmail">Email Address</label>
         <input type="email" class="form-control" name="userEmail" placeholder="Email Id" ng-model="registerUser
 .email" required>
-<div ng-show="RegisterForm.$submitted || RegisterForm.userEmail.$touched">
-        <div ng-show="RegisterForm.userEmail.$error.required">Enter Email !!</div>
-        <div ng-show="RegisterForm.userEmail.$error.email">This is not a valid email.</div>
-</div>
+        <div ng-show="RegisterForm.$submitted || RegisterForm.userEmail.$touched">
+            <div ng-show="RegisterForm.userEmail.$error.required">Enter Email !!</div>
+            <div ng-show="RegisterForm.userEmail.$error.email">This is not a valid email !!</div>
+        </div>
     </div>
     <div class="form-group">
         <label for="userPassword">Password</label>
         <input type="password" class="form-control" name="userPassword" placeholder="Password" ng-model="registerUser
 .password" required ng-keyup="matchPassword = (registerUser.confirmPassword === registerUser.password ? false:true)">
-<div ng-show="RegisterForm.$submitted || RegisterForm.userPassword.$touched">
-        <div ng-show="RegisterForm.userPassword.$error.required">Enter Password !!</div>
-</div>
+        
+        <div ng-show="RegisterForm.$submitted || RegisterForm.userPassword.$touched">
+            <div ng-show="RegisterForm.userPassword.$error.required">Enter Password !!</div>
+        </div>
     </div>
     <div class="form-group">
         <label for="userConfirmPassword">Confirm Password</label>
         <input type="password" class="form-control" name="userConfirmPassword" placeholder="Confirm Password" ng-model="registerUser.confirmPassword" required ng-keyup="matchPassword = (registerUser.confirmPassword === registerUser.password ? false:true)">
-<div ng-show="RegisterForm.$submitted || RegisterForm.userConfirmPassword.$touched">
-        <div ng-show="RegisterForm.userConfirmPassword.$error.required">Enter Confirm Password !!</div>
-        <div ng-show="matchPassword">Password and Confirm Password Not Matched!!</div>
-</div>
+        
+        <div ng-show="RegisterForm.$submitted || RegisterForm.userConfirmPassword.$touched">
+            <div ng-show="RegisterForm.userConfirmPassword.$error.required">Enter Confirm Password !!</div>
+            <div ng-show="matchPassword">Password and Confirm Password Not Matched!!</div>
+        </div>
     </div>
-<!--     <div class="checkbox">
-        <label>
-            <input type="checkbox"> Please Checkme before sign up
-        </label>
-    </div> -->
-    <button type="submit" class="btn btn-default" ng-click="registerUser(registerUser)">Submit</button>
+
+    <!-- <code>RegisterForm.$invalid = {{RegisterForm.$invalid}}</code><br>
+     <code>!matchPassword = {{!matchPassword}}</code> -->
+    <button class="btn btn-primary" ng-click="registerUserFunc(registerUser)"  ng-disabled="RegisterForm.$invalid || matchPassword">Submit</button>
 </form>

@@ -3,24 +3,30 @@
         </div>
 
         <div class="top-space row" ng-controller="LoginController">
-                <form class="col-md-8 col-md-offset-2" novalidate >
+                <form name="LoginForm" class="col-md-8 col-md-offset-2" novalidate>
                     <div class="form-group ">
                         <label for="SignIn" class="font-increase">Sign In</label>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" ng-model="user.email">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" name="username" placeholder="Username" ng-model="loginUser.username" required>
+                        <div ng-show="LoginForm.$submitted || LoginForm.username.$touched">
+                            <div ng-show="LoginForm.username.$error.required">Enter Username !!</div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" ng-model="user.password">
+                        <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password" ng-model="loginUser.password" required>
+                        <div ng-show="LoginForm.$submitted || LoginForm.password.$touched">
+                            <div ng-show="LoginForm.password.$error.required">Enter Password !!</div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary" ng-click="loginInit(user)" >Submit</button>
+                        <button type="submit" class="btn btn-primary" ng-click="loginInit(loginUser)" ng-disabled="LoginForm.$invalid">Submit</button>
                     </div>
                     <div class="form-group">
                         <label for="registerNow"><a href="#/register">Register Now</a></label> /
-                        <label for="registerNow">Forgot Password</label>
+                        <label for="forgotPassword"><a href="#/forgotPassword">Forgot Password</a></label>
                     </div>
                 </form>
         </div>
