@@ -1,0 +1,105 @@
+<h3>Main Page</h3>
+
+<div ng-controller="AccordionDemoCtrl">
+ <!-- <script type="text/ng-template" id="group-template.html">
+    <div class="panel {{panelClass || 'panel-default'}}">
+      <div class="panel-heading">
+        <h4 class="panel-title" style="color:#fa39c3">
+          <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" accordion-transclude="heading"><span
+            ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
+        </h4>
+      </div>
+      <div class="panel-collapse collapse" collapse="!isOpen">
+        <div class="panel-body" style="text-align: right" ng-transclude></div>
+      </div>
+    </div>
+  </script> -->
+
+<!--   <p>
+    <button type="button" class="btn btn-default btn-sm" ng-click="status.open = !status.open">Toggle last panel</button>
+    <button type="button" class="btn btn-default btn-sm" ng-click="status.isFirstDisabled = ! status.isFirstDisabled">Enable / Disable first panel</button>
+  </p> -->
+
+<!--   <div class="checkbox">
+    <label>
+      <input type="checkbox" ng-model="oneAtATime">
+      Open only one at a time
+    </label>
+  </div> -->
+
+  <accordion close-others="oneAtATime">
+
+    <accordion-group heading="College List" class="table-responsive" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>College Name</th>
+                    <th>College Contact</th>
+                    <th>College homepage</th>
+                </tr>
+            </thead>
+            <tbody> 
+                <tr ng-repeat="group in collegeGroups">
+                    <td>{{group.get("name")}}</td>        
+                    <td>{{group.get("contact")}}</td>
+                    <td>{{group.get("homepage")}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </accordion-group>
+
+    <accordion-group heading="Add New College">
+      <form novalidate name="CollegeAddForm">
+        <div class="form-group">
+            <label for="collegeName">College Name</label>
+            <input type="text" class="form-control" name="collegeName" placeholder="College Name" ng-model="CollegeDetail.collegeName" required>
+            <div ng-show="CollegeAddForm.$submitted || CollegeAddForm.collegeName.$touched">
+                <div ng-show="CollegeAddForm.collegeName.$error.required">Enter collegeName !!</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="collegeContact">College Contact</label>
+            <input type="text" class="form-control" name="collegeContact" placeholder="College Contact" ng-model="CollegeDetail.collegeContact" required>
+            <div ng-show="CollegeAddForm.$submitted || CollegeAddForm.collegeContact.$touched">
+                <div ng-show="CollegeAddForm.collegeContact.$error.required">Enter collegeContact !!</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="collegeHomepage">College Homepage</label>
+            <input type="text" class="form-control" name="collegeHomepage" placeholder="College Homepage" ng-model="CollegeDetail.collegeHomepage" required>
+            <div ng-show="CollegeAddForm.$submitted || CollegeAddForm.collegeHomepage.$touched">
+                <div ng-show="CollegeAddForm.collegeHomepage.$error.required">Enter collegeHomepage !!</div>
+            </div>
+        </div>
+
+         <button class="btn btn-primary" ng-click="collegeDetailFunc(CollegeDetail)"  ng-disabled="CollegeAddForm.$invalid">Submit</button>
+      </form>
+    </accordion-group>
+    
+
+    <accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+      {{group.content}}
+    </accordion-group>
+<!--     
+    <accordion-group heading="Dynamic Body Content">
+      <p>The body of the accordion group grows to fit the contents</p>
+      <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
+      <div ng-repeat="item in items">{{item}}</div>
+    </accordion-group>
+
+    <accordion-group heading="Delete account" panel-class="panel-danger">
+      <p>Please, to delete your account, click the button below</p>
+      <button class="btn btn-danger">Delete</button>
+    </accordion-group>
+
+    <accordion-group is-open="status.open">
+      <accordion-heading>
+        I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+      </accordion-heading>
+      This is just some content to illustrate fancy headings.
+    </accordion-group>
+     -->
+  </accordion>
+</div>
