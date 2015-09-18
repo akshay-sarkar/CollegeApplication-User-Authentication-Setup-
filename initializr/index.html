@@ -22,14 +22,14 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container" ng-controller="appCtrl">
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <header id="header" class="row page-header header">
             <div class="col-xs-6 col-md-4">
                 <span class="text-primary font-increase">
-                  <a href="#/home">Application Name</a>
+                  <a href="#/home">Angular + Parse App</a>
           </span>
             </div>
 
@@ -38,15 +38,16 @@
                 <li><a href="#/contact">Contact Us</a></li>
                 <li class="active"><a href="#/home">Home</a></li>
             </ul>
-            <button type="button" class="navbar-toggle navigation-button" data-toggle="collapse" data-target=".navbar-collapse">
+
+            <button type="button" class="navbar-toggle navigation-button" ng-click="isCollapsed = !isCollapsed">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
         </header>
         <!-- /header -->
-        <div class="hidden-sm hidden-md hidden-lg">
-            <div class="navbar-collapse collapse" style="border-bottom: 1px solid #eee;">
+        <div class="hidden-sm hidden-md hidden-lg" collapse="isCollapsed">
+            <div style="border-bottom: 1px solid #eee;">
                 <ul class="nav navbar-nav">
                     <li><a href="#/home">Home</a></li>
                     <li><a href="#/contact">Contact Us</a></li>
