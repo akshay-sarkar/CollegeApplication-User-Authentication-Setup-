@@ -30,7 +30,7 @@ myApp.controller('LoginController', ['$scope', '$rootScope', '$location', functi
 
         Parse.User.logIn(loginUser.username, loginUser.password, {
             success: function(user) {
-                $location.path('/home');
+                $location.path('/main');
 
                 $rootScope.logoutHide = false;
             },
