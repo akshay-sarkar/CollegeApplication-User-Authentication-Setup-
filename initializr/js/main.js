@@ -1,13 +1,13 @@
 var myApp = angular.module('myApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap']),CollegeDetails ;
 
-myApp.controller('appCtrl', [ '$scope', '$rootScope', '$window', function($scope, $rootScope, $window) {
+myApp.controller('appCtrl', [ '$scope', '$rootScope', '$location', function($scope, $rootScope, $location) {
   
   $rootScope.isCollapsed = true;
   $rootScope.logoutHide = true;
   $scope.backHome = function () {
-
-      var url = "http://" + $window.location.host + "/#/home";
-      $window.location.href = url;
+      $location.path('/home');
+      //var url = "http://" + $window.location.host + "/#/home";
+      //$window.location.href = url;
   }
 
   $scope.logOutUser = function () {
@@ -16,23 +16,21 @@ myApp.controller('appCtrl', [ '$scope', '$rootScope', '$window', function($scope
         Parse.User.logOut();
         $rootScope.logoutHide = true;
     } else {
-         var url = "http://" + $window.location.host + "/#/home";
-         $window.location.href = url;
+         $location.path('/home');
     }
     //$rootScope.isCollapsed = true;
   }
 
 }]);
 
-myApp.controller('LoginController', ['$scope', '$rootScope', '$window', function($scope, $rootScope, $window) {
+myApp.controller('LoginController', ['$scope', '$rootScope', '$location', function($scope, $rootScope, $location) {
     $scope.loginInit = function(loginUser) {
         event.preventDefault();
         console.log(loginUser.username + '  ' + loginUser.password);
 
         Parse.User.logIn(loginUser.username, loginUser.password, {
             success: function(user) {
-                var url = "http://" + $window.location.host + "/#/main";
-                $window.location.href = url;
+                $location.path('/home');
 
                 $rootScope.logoutHide = false;
             },
