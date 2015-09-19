@@ -1,26 +1,40 @@
 var myApp = angular.module('myApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap']),CollegeDetails ;
 
-myApp.controller('appCtrl', [ '$scope', '$window', function($scope, $window) {
+myApp.controller('appCtrl', [ '$scope', '$rootScope', '$window', function($scope, $rootScope, $window) {
   
-  $scope.isCollapsed = true;
+  $rootScope.isCollapsed = true;
+  $rootScope.logoutHide = true;
   $scope.backHome = function () {
 
       var url = "http://" + $window.location.host + "/#/home";
       $window.location.href = url;
   }
 
+  $scope.logOutUser = function () {
+    var currentUser = Parse.User.current();
+    if (currentUser) {
+        Parse.User.logOut();
+        $rootScope.logoutHide = true;
+    } else {
+         var url = "http://" + $window.location.host + "/#/home";
+         $window.location.href = url;
+    }
+    //$rootScope.isCollapsed = true;
+  }
+
 }]);
 
-myApp.controller('LoginController', ['$scope', '$window', function($scope, $window) {
+myApp.controller('LoginController', ['$scope', '$rootScope', '$window', function($scope, $rootScope, $window) {
     $scope.loginInit = function(loginUser) {
+        event.preventDefault();
         console.log(loginUser.username + '  ' + loginUser.password);
 
         Parse.User.logIn(loginUser.username, loginUser.password, {
             success: function(user) {
-                alert("Do stuff after successful login.");
-                //$window.location.href= "#/main";
                 var url = "http://" + $window.location.host + "/#/main";
                 $window.location.href = url;
+
+                $rootScope.logoutHide = false;
             },
             error: function(user, error) {
                 alert("The login failed. " + error.message);
@@ -73,7 +87,7 @@ myApp.controller('RegisterController', ['$scope', function($scope) {
     };
 }]);
 
-myApp.controller('AccordionDemoCtrl', function($scope) {
+myApp.controller('AccordionDemoCtrl', ['$scope', '$location', function($scope, $location) {
     $scope.oneAtATime = true;
 
     $scope.groups = [{
@@ -123,22 +137,13 @@ myApp.controller('AccordionDemoCtrl', function($scope) {
                 alert('Failed to create new object, with error code: ' + error.message);
             }
         });
-
     }
-});
+}]);
 
 myApp.config(function($routeProvider, $locationProvider) {
     $routeProvider
         .when('/contact', {
-            templateUrl: 'templates/contact.html',
-            // resolve: {
-            //   // I will cause a 1 second delay
-            //   delay: function($q, $timeout) {
-            //     var delay = $q.defer();
-            //     $timeout(delay.resolve, 1000);
-            //     return delay.promise;
-            //   }
-            // }
+            templateUrl: 'templates/contact.html'
         })
         .when('/home', {
             templateUrl: 'templates/home.html',
@@ -146,7 +151,23 @@ myApp.config(function($routeProvider, $locationProvider) {
         })
         .when('/main', {
             templateUrl: 'templates/main.html',
-            controller: 'AccordionDemoCtrl'
+            controller: 'AccordionDemoCtrl',
+            resolve: {
+             check:function(appFactory, $location, $rootScope){   
+
+                  var currentUser = appFactory.getPermission()
+                  if (!currentUser.access) {
+                      // show the signup or login page
+                      $location.path('/home');    //redirect user to home.
+                      alert("You don't have access here. Please Relogin.");
+                      $rootScope.logoutHide = true;
+                  }else{
+                      $rootScope.logoutHide = false;
+                      $rootScope.isCollapsed = true;
+                  }
+              }
+
+            }
         })
         .when('/register', {
             templateUrl: 'templates/register.html',
@@ -196,4 +217,21 @@ myApp.config(function($routeProvider, $locationProvider) {
             return college;
         }
     });
+});
+
+myApp.factory('appFactory', function(){
+    var obj = {}
+    this.access = false;
+    obj.getPermission = function(){    //set the permission to true
+      var currentUser = Parse.User.current();
+      if (currentUser) {
+          // do stuff with the user
+          this.access = true;
+      } else {
+          // show the signup or login page
+          this.access = false;
+      }
+      return obj
+    }
+    return obj;
 });

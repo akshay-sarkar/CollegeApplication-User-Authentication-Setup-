@@ -34,7 +34,7 @@
             </div>
 
             <ul class="nav nav-pills right-tabs col-xs-6 col-md-offset-4 col-md-4 hidden-xs" id="nav-tab">
-                <li><a href="#/contact">Tab2</a></li>
+                <li ng-hide="logoutHide" ng-click="logOutUser()"><a href="#/logout">Logout</a></li>
                 <li><a href="#/contact">Contact Us</a></li>
                 <li class="active"><a href="#/home">Home</a></li>
             </ul>
@@ -51,7 +51,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#/home">Home</a></li>
                     <li><a href="#/contact">Contact Us</a></li>
-                    <li><a href="#">Example</a></li>
+                    <li ng-hide="logoutHide" ng-click="logOutUser()"><a href="#/logout">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -60,7 +60,7 @@
         <div ng-view></div>
         
         <footer>
-            @Learning Source
+            <a href="https://twitter.com/SarkarAkshay" title="">@SarkarAkshay - Follow me on Twitter</a>
         </footer>
     </div>
     </div>

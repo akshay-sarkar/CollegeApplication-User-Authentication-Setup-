@@ -41,6 +41,14 @@ a{
     background-color: red;
 }
 
+tr {
+  cursor: pointer;
+}
+
+.logout{
+  display: none !important;
+}
+
 
 /* Small devices (tablets, 768px and up) */
 

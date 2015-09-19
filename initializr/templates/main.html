@@ -42,7 +42,7 @@
                 <tr ng-repeat="group in collegeGroups">
                     <td>{{group.get("name")}}</td>        
                     <td>{{group.get("contact")}}</td>
-                    <td>{{group.get("homepage")}}</td>
+                    <td><a ng-href="{{group.get('homepage')}}">{{group.get("homepage")}}</a></td>
                 </tr>
             </tbody>
         </table>
@@ -74,7 +74,7 @@
             </div>
         </div>
 
-         <button class="btn btn-primary" ng-click="collegeDetailFunc(CollegeDetail)"  ng-disabled="CollegeAddForm.$invalid">Submit</button>
+         <button class="btn btn-success" ng-click="collegeDetailFunc(CollegeDetail)"  ng-disabled="CollegeAddForm.$invalid">Submit</button>
       </form>
     </accordion-group>
     

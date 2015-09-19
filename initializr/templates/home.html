@@ -1,9 +1,7 @@
-        <div class="top-space row">
-            Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (the contextual colors are only used to reinforce meaning that is already present in the text/markup), or is included through alternative means, such as additional text hidden with the .sr-only class.
-        </div>
-
-        <div class="top-space row" ng-controller="LoginController">
-                <form name="LoginForm" class="col-md-8 col-md-offset-2" novalidate>
+        <div class="row">
+           
+            <div class="top-space col-sm-5 col-sm-push-7" ng-controller="LoginController">
+                <form novalidate ng-controller="LoginController" name="LoginForm">
                     <div class="form-group ">
                         <label for="SignIn" class="font-increase">Sign In</label>
                     </div>
@@ -22,12 +20,17 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary" ng-click="loginInit(loginUser)" ng-disabled="LoginForm.$invalid">Submit</button>
+                        <button type="submit" class="btn btn-success" ng-click="loginInit(loginUser)" ng-disabled="LoginForm.$invalid">Submit</button>
                     </div>
                     <div class="form-group">
                         <label for="registerNow"><a href="#/register">Register Now</a></label> /
                         <label for="forgotPassword"><a href="#/forgotPassword">Forgot Password</a></label>
                     </div>
                 </form>
+            </div>
+
+            <div class="top-space col-sm-7 col-sm-pull-5">
+                Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies – such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (the contextual colors are only used to reinforce meaning that is already present in the text/markup), or is included through alternative means, such as additional text hidden with the .sr-only class.
+            </div>
         </div>
 <!--// browser-sync start --server --files "css/*.css, js/*.js, index.html" -->
